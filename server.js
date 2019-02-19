@@ -1,6 +1,7 @@
 const express = require('express');
 const express_graphql = require('express-graphql');
 const { buildSchema } = require('graphql');
+const cors = require('cors');
 
 // GraphQL schema
 const schema = buildSchema(`
@@ -56,7 +57,8 @@ const rentalsData = [
     category:    "Apartment",
     bedrooms:    3,
     image:       "https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg",
-    description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
+    description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active " +
+                   "night life are within a few feet."
   }
 ];
 
@@ -87,6 +89,7 @@ const root = {
 };
 // Create an express server and a GraphQL endpoint
 const app = express();
+app.use(cors());
 app.use('/graphql', express_graphql({
   schema:    schema,
   rootValue: root,
