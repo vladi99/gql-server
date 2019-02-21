@@ -7,7 +7,7 @@ const cors = require('cors');
 const schema = buildSchema(`
     type Query {
         rental(id: String!): Rental
-        rentals(topic: String): [Rental]
+        rentals(city: String): [Rental]
     },
     type Rental {
         id: String
